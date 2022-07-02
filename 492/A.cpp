@@ -3,30 +3,35 @@
 using namespace std;
 
 int main () {
-	int n, k, buf;
-	bool b = false;
-	cin >> n >> k;
-	vector<int> v;
-
-	for (int i = 0; i < n; i++) {
-		cin >> buf;
-		v.push_back(buf);
-		if (buf > k) {
-			b = true;
-		}
+	int n;
+	
+	cin >> n;
+	int bill = 0;
+	int c = 100;
+	if (n >= c) {
+		bill += n / c;
+		n %= c;
 	}
-	int ctr = 0;
-	while (v[ctr] <= k) {
-		ctr++;
+	c = 20;
+	if (n >= c) {
+		bill += n / c;
+		n %= c;
 	}
-	int ctr_end = 0;
-	while (v[v.size() - 1 - ctr_end] <= k) {
-		ctr_end++;
+	c = 10;
+	if (n >= c) {
+		bill += n / c;
+		n %= c;
 	}
-	if (b) {
-		cout << ctr + ctr_end << endl;
-	} else {
-		cout << v.size() << endl;
+	c = 5;
+	if (n >= c) {
+		bill += n / c;
+		n %= c;
 	}
+	c = 1;
+	if (n >= c) {
+		bill += n / c;
+		n %= c;
+	}
+	cout << bill << endl;
 	return 0;
 }

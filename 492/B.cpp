@@ -4,21 +4,35 @@ using namespace std;
 
 int main () {
 	int n;
-	string s;
 	
 	cin >> n;
-	cin >> s;
+	int a[n];
 	for (int i = 0; i < n; i++) {
-		if ((n % (i+1)) == 0) {
-			for (int j = 0; j < ((i+1)/2); j++) {
-				char temp;
-				temp = s[j];
-				s[j] = s[i-j];
-				s[i-j] = temp;
+		cin >> a[i];
+	}
+	int arrived[n];
+	for (int i = 0; i < n; i++) {
+		arrived[i] = a[i] - i;
+		if (arrived[i] < 0) {
+			arrived[i] = i;
+		} else {
+			if (arrived[i] % n != 0) {
+				arrived[i] /= n;
+				arrived[i] += 1;
+			} else {
+				arrived[i] /= n;
 			}
-			//cout << s << endl;
+			arrived[i] *= n;
+			arrived[i] += i;
 		}
 	}
-	cout << s << endl;
+	int min = arrived[0], idxMin = 0;
+	for (int i = 0; i < n; i++) {
+		if (arrived[i] < min) {
+			min = arrived[i];
+			idxMin = i;
+		}
+	}
+	cout << idxMin+1 << endl;
 	return 0;
 }
