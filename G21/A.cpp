@@ -2,27 +2,23 @@
 #include <algorithm>
 using namespace std;
 
+void solve() {
+	int n, z;
+	cin >> n >> z;
+	int a[n];
+	int ans = 0;
+	for (int &x: a) {
+		cin >> x;
+		ans = max(ans, x|z);
+	}
+	cout << ans << endl;
+}
+
 int main () {
 	int t;
 	cin >> t;
 	while (t--) {
-		int n;
-		cin >> n;
-		bool e = false;
-		for (int i = 0; i < n; i++) {
-			int x;
-			cin >> x;
-			if (x != 1) {
-				if (x%2 == 0) {
-					e = !e;
-				}
-			}
-		}
-		if (e) {
-			cout << "errorgorn" << endl;
-		} else {
-			cout << "maomao90" << endl;
-		}
+		solve();
 	}
 	return 0;
 }
