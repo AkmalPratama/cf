@@ -1,49 +1,54 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+void solve() {
+	int n, k;
+	cin >> n >> k;
+	string s;
+	cin >> s;
+	vector<int> v(n, 0);
+	if (k % 2) {
+		for (int i = 0; i < n; i++) {
+			if (s[i] == '1' && k) {
+				v[i] = 1;
+				k--;
+			} else {
+				s[i] = '1' - (s[i] - '0');
+			}
+		}
+		if (k > 0) {
+			if (k % 2) {
+				s[n-1] = '1' - (s[n-1] - '0');
+			}
+			v[n-1] += k;
+		}
+	} else {
+		for (int i = 0; i < n; i++) {
+			if (s[i] == '0' && k) {
+				s[i] = '1';
+				v[i] = 1;
+				k--;
+			}
+		}
+		if (k > 0) {
+			v[n-1] += k;
+			if (k % 2) {
+				s[n-1] = '1' - (s[n-1] - '0');
+			}
+		}
+	}
+	cout << s << endl;
+	for (int i = 0; i < n; i++) {
+		cout << v[i] << " ";
+	}
+	cout << endl;
+}
+
 int main () {
 	int t;
 	cin >> t;
 	while (t--) {
-		int n;
-		cin >> n;
-		int a[n];
-		for (int i = 0; i < n; i++) {
-			cin >> a[i];
-		}
-		sort(a, a+n);
-		int maxCnt, maxF, curCnt;
-		maxCnt = 1;
-		maxF = a[0];
-		curCnt = 1;
-		for (int i = 1; i < n; i++) {
-			if (a[i] == a[i-1]) {
-				curCnt++;
-			} else {
-				if (curCnt > maxCnt) {
-					maxCnt = curCnt;
-					maxF = a[i-1];
-				}
-				curCnt = 1;
-			}
-		}
-		if (curCnt > maxCnt) {
-			maxCnt = curCnt;
-			maxF = a[n-1];
-		}
-		if (maxCnt == n) {
-			cout << 0 << endl;
-		} else {
-			int step = 0;
-			while (maxCnt < n) {
-				step += 1 + maxCnt;
-				maxCnt *= 2;
-			}
-			if (maxCnt > n) {
-				step -= (maxCnt - n);
-			}
-			cout << step << endl;
-		}
+		solve();
 	}
 	return 0;
 }
