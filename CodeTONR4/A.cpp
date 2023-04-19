@@ -2,21 +2,29 @@
 #include <algorithm>
 using namespace std;
 
+void solve() {
+	int n;
+	cin >> n;
+	int a[n+1];
+	bool b = false;
+	for (int i = 1; i <= n; i++) {
+		cin >> a[i];
+		if (i >= a[i]) {
+			b = true;
+		}
+	}
+	if (b) {
+		cout << "YES\n";
+	} else {
+		cout << "NO\n";
+	}
+}
+
 int main () {
 	int t;
 	cin >> t;
 	while (t--) {
-		int n;
-		cin >> n;
-		int a[n];
-		for (int i = 0; i < n; i++) {
-			cin >> a[i];
-		}
-		if (a[0] == 1) {
-			cout << "YES\n";
-		} else {
-			cout << "NO\n";
-		}
+		solve();
 	}
 	return 0;
 }
